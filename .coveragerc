@@ -1,0 +1,8 @@
+[run]
+branch = True
+relative_files = True
+omit =
+    */tests/*
+    test_*
+    */version.py
+    */setup.py

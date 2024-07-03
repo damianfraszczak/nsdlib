@@ -1,0 +1,5 @@
+networkx>=3.0
+netcenlib>=0.2.2
+cdlib>=0.4.0
+leidenalg
+infomap
