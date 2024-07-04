@@ -5,7 +5,8 @@ from networkx import Graph
 
 from nsdlib.taxonomies import (
     NodeEvaluationAlgorithm,
-    OutbreaksDetectionAlgorithm, PropagationReconstructionAlgorithm,
+    OutbreaksDetectionAlgorithm,
+    PropagationReconstructionAlgorithm,
 )
 
 NODE_TYPE = Union[int, str]
@@ -20,20 +21,19 @@ class SourceDetectionConfig:
     )
     outbreaks_detection_algorithm: Optional[OutbreaksDetectionAlgorithm] = None
     propagation_reconstruction_algorithm: Optional[
-        PropagationReconstructionAlgorithm] = None
+        PropagationReconstructionAlgorithm
+    ] = None
 
     def __post_init__(self):
         if self.selection_threshold is not None and not (
             0 <= self.selection_threshold <= 1
         ):
-            raise ValueError(
-                "selection_threshold must be None or between 0 and 1.")
+            raise ValueError("selection_threshold must be None or between 0 and 1.")
 
 
 @dataclass
 class EnsembleSourceDetectionConfig(SourceDetectionConfig):
-    detection_configs: List[SourceDetectionConfig] = field(
-        default_factory=list)
+    detection_configs: List[SourceDetectionConfig] = field(default_factory=list)
 
 
 CLASSIFICATION_REPORT_FIELDS = (
@@ -144,8 +144,7 @@ class ClassificationMetrics:
 
     def get_classification_report(self) -> Dict[str, float]:
         """Classification report as string."""
-        return {attr: getattr(self, attr) for attr in
-                CLASSIFICATION_REPORT_FIELDS}
+        return {attr: getattr(self, attr) for attr in CLASSIFICATION_REPORT_FIELDS}
 
 
 @dataclass
