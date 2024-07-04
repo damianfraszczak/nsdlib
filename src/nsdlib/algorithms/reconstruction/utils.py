@@ -39,8 +39,7 @@ def compute_neighbors_probability(node: NODE_TYPE, G: Graph) -> float:
     @return: Probability of infection for a given node
     """
     neighbors_probability = [
-        G.nodes[node][NODE_INFECTION_PROBABILITY_ATTR] for node in
-        nx.neighbors(G, node)
+        G.nodes[node][NODE_INFECTION_PROBABILITY_ATTR] for node in nx.neighbors(G, node)
     ]
     return reduce(
         operator.mul,

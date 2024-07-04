@@ -1,13 +1,16 @@
 from networkx import Graph
 
-from nsdlib.algorithms.reconstruction.utils import init_extended_network, \
-    compute_neighbors_probability, NODE_INFECTION_PROBABILITY_ATTR, \
-    remove_invalid_nodes
+from nsdlib.algorithms.reconstruction.utils import (
+    NODE_INFECTION_PROBABILITY_ATTR,
+    compute_neighbors_probability,
+    init_extended_network,
+    remove_invalid_nodes,
+)
 
 
-def sbrp(G: Graph, IG: Graph,
-         reconstruction_threshold=0.5,
-         max_iterations: int = 1) -> Graph:
+def sbrp(
+    G: Graph, IG: Graph, reconstruction_threshold=0.5, max_iterations: int = 1
+) -> Graph:
     """SbRP graph reconstruction algorithm.
 
     @param G: Network
@@ -29,9 +32,9 @@ def sbrp(G: Graph, IG: Graph,
             for neighbour in G.neighbors(node):
                 if neighbour in IG:
                     continue
-                EG.nodes[neighbour][
-                    NODE_INFECTION_PROBABILITY_ATTR] = compute_neighbors_probability(
-                    G=EG, node=neighbour)
+                EG.nodes[neighbour][NODE_INFECTION_PROBABILITY_ATTR] = (
+                    compute_neighbors_probability(G=EG, node=neighbour)
+                )
 
     remove_invalid_nodes(EG, reconstruction_threshold)
     return EG

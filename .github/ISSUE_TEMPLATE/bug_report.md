@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a report to help us improve the network centrality library
+about: Create a report to help us improve the NSDLib
 title: "[BUG]"
 labels: bug
 assignees: ''

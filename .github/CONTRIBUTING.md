@@ -22,19 +22,19 @@ We warmly welcome contributions to NSDLib! This document provides guidelines for
 
 ### Implementation Requirements
 
-- **Centrality Measures Implementation**:
-  - Each centrality measure must be implemented in a separate file within the `nsdlib/algorithms` directory.
-  - The file name should match the centrality measure's name.
-  - Each file must contain a single function, named after the centrality measure, that calculates this measure. This function should accept a NetworkX graph as input and return a dictionary mapping nodes to their centrality values.
-  - Each centrality measure function must be exposed in the `nsdlib/algorithms` package to be accessible for external use.
-  - Add an entry for the new centrality measure in the `Centrality` enum to ensure it's recognized and accessible through a standardized interface.
+- **Source Detection Method Implementation**:
+  - Each new method must be implemented in a separate file within the `nsdlib/algorithms` directory in appropriate package according to its intended purpose e.g. reconstruction algorithm should be placed in `reconstruction` package.
+  - The file name should match the method's name.
+  - Each file must contain a single function, named after the new method name.
+  - Each alg function must be exposed in the `nsdlib/algorithms` package to be accessible for external use.
+  - Add an entry for the new alg in the appropiate taxonomy class, e.g. for reconstruction algorithm new entry should be placed into `PropagationReconstructionAlgorithm` enum to ensure it's recognized and accessible through a standardized interface.
 
 - **Testing**:
   - Contributions must include tests covering the new functionality. We require at least 80% test coverage for changes.
   - Use the `pytest` framework for writing tests.
 
 - **Documentation**:
-  - Update the project documentation to reflect the addition of new centrality measures or any other significant changes.
+  - Update the project documentation to reflect the addition of new method or any other significant changes.
   - Ensure that examples, usage guides, and API documentation are clear and updated.
 
 ### Making Changes

@@ -1,22 +1,21 @@
 # NSDlib
 
-NSDlib (Network source detection library) is a tool to compute a wide range of centrality measures for a given network. The
-library is designed to work with Python Networkx library.
+NSDlib (Network source detection library) is a comprehensive library designed for detecting sources of propagation in networks. This library offers a variety of algorithms that help researchers and developers analyze and identify the origins of information (epidemic etc.) spread within networks.
 
 ## Overview
 
-The goal of NSDlib is to offer a comprehensive repository for implementing a broad spectrum of centrality measures. Each
-year, new measures are introduced through scientific papers, often with only pseudo-code descriptions, making it
-difficult for researchers to evaluate and compare them with existing methods. While implementations of well-known
-centrality measures exist, recent innovations are frequently absent. NSDlib strives to bridge this gap. It references the
-renowned CentiServer portal for well-known centrality measures and their originating papers, aiming to encompass all
-these measures in the future.
+NSDLib is a complex library designed for easy integration into existing projects. It aims to be a comprehensive repository
+of source detection methods, outbreak detection techniques, and propagation graph reconstruction tools. Researchers worldwide are encouraged to contribute and utilize this library,
+facilitating the development of new techniques to combat misinformation and improve propagation analysis.
+Each  year, new techniques are introduced through scientific papers, often with only pseudo-code descriptions, making it
+difficult for researchers to evaluate and compare them with existing methods. NSDlib tries to bridge this gap and enhance researchers to put their implementations here.
 
 ## Code structure
 
-All custom implementations are provided under `nsdlib/algorithms` package. Each centrality measure is implemented in a separate file, named after the measure itself. Correspondingly, each file contains a function, named identically to the file, which calculates the centrality measure. This function accepts a NetworkX graph as input (and other params if applicable) and returns a dictionary, mapping nodes to their centrality values. Ultimately, every custom implementation is made available through the `nsdlib/algorithms` package.
-## Implemented centrality measures:
+All custom implementations are provided under `nsdlib/algorithms` package. Each method is implemented in a separate file, named after the method itself and in appropriate package according to its intended purpose e.g. reconstruction algorithm should be placed in `reconstruction` package. . Correspondingly, each file contains a function, named identically to the file, which does appropriate logic.  Ultimately, every custom implementation is made available through the `nsdlib/algorithms` package.
+## Implemented features:
 
+### Node evaluation algorithms
 - [Algebraic](https://www.centiserver.org/centrality/Algebraic_Centrality/)
 - [Average Distance](https://www.centiserver.org/centrality/Average_Distance/)
 - [Barycenter](https://www.centiserver.org/centrality/Barycenter_Centrality/)
@@ -58,6 +57,12 @@ All custom implementations are provided under `nsdlib/algorithms` package. Each 
 - [Topological](https://www.centiserver.org/centrality/Topological_Coefficient/)
 - [Trophic Levels](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.centrality.trophic_levels.html)
 
+### Outbreak detection algorithms
+- test
+
+### Graph reconstruction algorithms
+- SbRP
+
 ## How to use
 Library can be installed using pip:
 
@@ -69,31 +74,32 @@ pip install nsdlib
 
 Provided algorithms can be executed in the following ways:
 
-- by invoking a specific function from `nsdlib.algorithms` package, which computes a given centrality measure for a
-  given graph.
+- by utilizing 'SourceDetector' class and configuring it with 'SourceDetectionConfig' object. This approach allows for seamless source detection and result evaluation.
 
 ```python
 import networkx as nx
-import nsdlib as ncl
 
-# Create a graph
+from nsdlib.common.models import SourceDetectionConfig
+from nsdlib.source_detection import SourceDetector
+from nsdlib.taxonomies import NodeEvaluationAlgorithm
+
+
 G = nx.karate_club_graph()
 
-# Compute degree centrality
-degree_centrality = ncl.degree_centrality(G)
+config = SourceDetectionConfig(
+    node_evaluation_algorithm=NodeEvaluationAlgorithm.NETSLEUTH,
+)
 
-# Compute betweenness centrality
-betweenness_centrality = ncl.betweenness_centrality(G)
+source_detector = SourceDetector(config)
 
-# Compute closeness centrality
-closeness_centrality = ncl.closeness_centrality(G)
+result, evaluation = source_detector.detect_sources_and_evaluate(G=G,
+                                        IG=G, real_sources=[0,33])
+print(evaluation)
 
-# Compute eigenvector centrality
-eigenvector_centrality = ncl.eigenvector_centrality(G)
+
 ```
 
-- invoking `compute_centrality` method of `CentralityService` class, which allows to compute centrality for a given
-  centrality measure.
+- by importing and using specific method:
 
 ```python
 from typing import Any
