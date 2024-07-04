@@ -14,8 +14,8 @@ def net_sleuth(network: Graph) -> Dict[int, float]:
     References
     ----------
     - [1] B. A. Prakash, J. Vreeken, C. Faloutsos,
-        "Efficiently spotting the starting points of an epidemic in a large graph"
-        Knowledge and Information Systems, 2013
+        "Efficiently spotting the starting points of an epidemic in a large
+        graph" Knowledge and Information Systems, 2013
         https://link.springer.com/article/10.1007/s10115-013-0671-5
     - [2] L. Ying and K. Zhu,
         "Diffusion Source Localization in Large Networks"

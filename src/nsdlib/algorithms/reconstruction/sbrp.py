@@ -21,8 +21,13 @@ def sbrp(
     @return: Extended network
     References
         ----------
-        - [1] W. Zang, P. Zhang, C. Zhou, i L. Guo, „Discovering Multiple Diffusion Source Nodes in Social Networks”, Procedia Comput. Sci., t. 29, s. 443–452, 2014, doi: 10.1016/j.procs.2014.05.040.
-        - [2] W. Zang, P. Zhang, C. Zhou, i L. Guo, „Locating multiple sources in social networks under the SIR model: A divide-and-conquer approach”, J. Comput. Sci., t. 10, s. 278–287, wrz. 2015, doi: 10.1016/j.jocs.2015.05.002.
+        - [1] W. Zang, P. Zhang, C. Zhou, i L. Guo, „Discovering Multiple
+        Diffusion Source Nodes in Social Networks”, Procedia Comput. Sci.,
+        t. 29, s. 443–452, 2014, doi: 10.1016/j.procs.2014.05.040.
+        - [2] W. Zang, P. Zhang, C. Zhou, i L. Guo, „Locating multiple sources
+        in social networks under the SIR model: A divide-and-conquer approach”,
+         J. Comput. Sci., t. 10, s. 278–287, wrz. 2015,
+         doi: 10.1016/j.jocs.2015.05.002.
     """
     EG = init_extended_network(G=G, IG=IG)
     iter = 1
