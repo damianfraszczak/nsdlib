@@ -1,4 +1,4 @@
-# flake8: noq
+# flake8: noqa
 
 from nsdlib.algorithms.outbreaks_detection import (
     CPM_Bipartite as outbreaks_detection_CPM_Bipartite,

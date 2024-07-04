@@ -11,6 +11,7 @@ from nsdlib.algorithms.reconstruction.utils import (
 def sbrp(
     G: Graph, IG: Graph, reconstruction_threshold=0.5, max_iterations: int = 1
 ) -> Graph:
+    # flake8: noqa
     """SbRP graph reconstruction algorithm.
 
     @param G: Network

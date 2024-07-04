@@ -8,6 +8,7 @@ from networkx import Graph
 
 
 def net_sleuth(network: Graph) -> Dict[int, float]:
+    # flake8: noqa
     """NetSleuth source evaluation method.
 
     References

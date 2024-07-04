@@ -11,7 +11,6 @@ from networkx import Graph
 def dynamic_age(network: Graph) -> Dict[int, float]:
     """Dynamic age source detection method.
 
-
     References
     ----------
     - [1] V. Fioriti i M. Chinnici, „Predicting the sources of an outbreak with a spectral technique”, ArXiv12112333 Math-Ph Physicsphysics, lis. 2012, Dostęp: 6 maj 2021. [Online]. Dostępne na: http://arxiv.org/abs/1211.2333
