@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest an idea for the network centrality library
+about: Suggest an idea for the NSDLib
 title: "[FEATURE]"
 labels: enhancement
 assignees: ''

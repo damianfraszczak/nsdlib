@@ -1,9 +1,7 @@
-import json
 import math
 import random
-from typing import List, Tuple, Dict
+from typing import Dict, List, Tuple
 
-import networkx as nx
 from networkx import Graph
 
 
@@ -30,6 +28,9 @@ def exclude_nodes(G: Graph, nodes: List[any]) -> Graph:
     g_copy.remove_nodes_from(nodes)
     return g_copy
 
-def create_subgraphs_based_on_outbreaks(G: Graph, outbreaks: Dict[int, list]) -> List[Graph]:
+
+def create_subgraphs_based_on_outbreaks(
+    G: Graph, outbreaks: Dict[int, list]
+) -> List[Graph]:
     """Create subgraphs based on outbreaks."""
     return [G.subgraph(outbreak) for outbreak in outbreaks.values()]

@@ -52,7 +52,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    keywords="node_importance centrality_measures centrality complex-networks",
+    keywords="source_detection propagation_outbreaks node_importance complex-networks",
     install_requires=requirements,
     long_description=long_description,
     long_description_content_type="text/markdown",

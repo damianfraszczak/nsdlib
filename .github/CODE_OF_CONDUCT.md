@@ -1,4 +1,4 @@
-# Code of Conduct for the Network Centrality Library Project
+# Code of Conduct for the Network Source Detection Library) Project
 
 ## Our Pledge
 
