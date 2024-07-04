@@ -49,7 +49,7 @@ class NodeEvaluationAlgorithm(Enum):
     # NSDLib algorithms
     DYNAMIC_AGE = "dynamic_age"
     JORDAN_CENTER = "jordan_center"
-    NETSLEUTH = "netsleuth"
+    NETSLEUTH = "net_sleuth"
 
 
 class PropagationReconstructionAlgorithm(Enum):
