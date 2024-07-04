@@ -13,6 +13,7 @@ from nsdlib.commons import normalize_dict_values
 
 
 class SourceDetector:
+    """Source detection generic algorithm."""
     def __init__(self, config: SourceDetectionConfig):
         self.config = config
 

@@ -1,11 +1,11 @@
 from functools import lru_cache
-from typing import Dict, Set, List, Union
-
 from netcenlib.common import nx_cached
 from netcenlib.common.nx_cached import MAX_SIZE
 from networkx import Graph
+from typing import Dict, Set, List, Union
 
-from nsdlib.algorithms import node_evaluation, outbreaks_detection
+from nsdlib.algorithms import node_evaluation, outbreaks_detection, \
+    reconstruction
 from nsdlib.common.models import SourceDetectionEvaluation, NODE_TYPE
 from nsdlib.taxonomies import (
     NodeEvaluationAlgorithm,
@@ -32,6 +32,15 @@ def evaluate_nodes(
     return getattr(node_evaluation, function_name)(network, *args, **kwargs)
 
 
+def reconstruct_propagation(
+    G: Graph, IG: Graph,
+    reconstruction_alg: PropagationReconstructionAlgorithm, *args, **kwargs
+):
+    """Reconstruct the propagation of a given network."""
+    function_name = f"{reconstruction_alg.value.lower()}"
+    return getattr(reconstruction, function_name)(G, IG, *args, **kwargs)
+
+
 @lru_cache(maxsize=MAX_SIZE)
 def identify_outbreaks_cached(
     network: Graph, outbreaks_alg: OutbreaksDetectionAlgorithm, *args, **kwargs
@@ -48,10 +57,20 @@ def evaluate_nodes_cached(
     return evaluate_nodes(network, evaluation_alg, *args, **kwargs)
 
 
+@lru_cache(maxsize=MAX_SIZE)
+def reconstruct_propagation_cached(
+    G: Graph, IG: Graph,
+    reconstruction_alg: PropagationReconstructionAlgorithm, *args, **kwargs
+):
+    """Reconstruct the propagation of a given network."""
+    return reconstruct_propagation(G, IG, reconstruction_alg, *args, **kwargs)
+
+
 def compute_error_distances(
     G: Graph, not_detected_sources: Set[int],
     invalid_detected_sources: Set[int]
 ) -> Dict[NODE_TYPE, float]:
+    """Compute the error distances for the source detection evaluation."""
     if not_detected_sources and invalid_detected_sources:
         return {source:
             min(
@@ -73,6 +92,7 @@ def compute_source_detection_evaluation(
     real_sources: List[NODE_TYPE],
     detected_sources: Union[NODE_TYPE, List[NODE_TYPE]]
 ) -> SourceDetectionEvaluation:
+    """Compute the evaluation of the source detection."""
     detected_sources = (
         detected_sources if isinstance(detected_sources, list) else [
             detected_sources]
