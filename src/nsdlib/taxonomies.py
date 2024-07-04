@@ -143,3 +143,10 @@ class OutbreaksDetectionAlgorithm(Enum):
     WCOMMUNITY = "wCommunity"
     WALKSCAN = "walkscan"
     WALKTRAP = "walktrap"
+
+
+class EnsembleVotingType(Enum):
+    """A list of ensemble voting types."""
+
+    SOFT = "soft"
+    HARD = "hard"

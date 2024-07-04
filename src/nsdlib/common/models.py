@@ -4,6 +4,7 @@ from typing import Dict, List, Optional, Union
 from networkx import Graph
 
 from nsdlib.taxonomies import (
+    EnsembleVotingType,
     NodeEvaluationAlgorithm,
     OutbreaksDetectionAlgorithm,
     PropagationReconstructionAlgorithm,
@@ -14,6 +15,8 @@ NODE_TYPE = Union[int, str]
 
 @dataclass
 class SourceDetectionConfig:
+    """Source detection configuration."""
+
     # for None, only one with the highest score will be selected
     selection_threshold: Optional[float] = None
     node_evaluation_algorithm: NodeEvaluationAlgorithm = (
@@ -32,8 +35,12 @@ class SourceDetectionConfig:
 
 
 @dataclass
-class EnsembleSourceDetectionConfig(SourceDetectionConfig):
+class EnsembleSourceDetectionConfig:
+    """Ensemble source detection configuration."""
+
     detection_configs: List[SourceDetectionConfig] = field(default_factory=list)
+    voting_type: EnsembleVotingType = EnsembleVotingType.HARD
+    classifier_weights: List[float] = field(default_factory=list)
 
 
 CLASSIFICATION_REPORT_FIELDS = (
@@ -168,4 +175,14 @@ class SourceDetectionResult:
     IG: Graph
     global_scores: Dict[NODE_TYPE, float]
     scores_in_outbreaks: List[Dict[NODE_TYPE, float]]
+    detected_sources: List[NODE_TYPE]
+
+
+@dataclass
+class EnsembleSourceDetectionResult:
+    config: EnsembleSourceDetectionConfig
+    G: Graph
+    IG: Graph
+    global_scores: Dict[NODE_TYPE, float]
+    ensemble_scores: List[SourceDetectionResult]
     detected_sources: List[NODE_TYPE]
