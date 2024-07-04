@@ -1,12 +1,14 @@
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 from networkx import Graph
 
 from nsdlib.taxonomies import (
     NodeEvaluationAlgorithm,
-    OutbreaksDetectionAlgorithm,
+    OutbreaksDetectionAlgorithm, PropagationReconstructionAlgorithm,
 )
+
+NODE_TYPE = Union[int, str]
 
 
 @dataclass
@@ -17,17 +19,21 @@ class SourceDetectionConfig:
         NodeEvaluationAlgorithm.CENTRALITY_DEGREE
     )
     outbreaks_detection_algorithm: Optional[OutbreaksDetectionAlgorithm] = None
+    propagation_reconstruction_algorithm: Optional[
+        PropagationReconstructionAlgorithm] = None
 
     def __post_init__(self):
         if self.selection_threshold is not None and not (
             0 <= self.selection_threshold <= 1
         ):
-            raise ValueError("selection_threshold must be None or between 0 and 1.")
+            raise ValueError(
+                "selection_threshold must be None or between 0 and 1.")
 
 
 @dataclass
 class EnsembleSourceDetectionConfig(SourceDetectionConfig):
-    detection_configs: List[SourceDetectionConfig] = field(default_factory=list)
+    detection_configs: List[SourceDetectionConfig] = field(
+        default_factory=list)
 
 
 CLASSIFICATION_REPORT_FIELDS = (
@@ -138,12 +144,29 @@ class ClassificationMetrics:
 
     def get_classification_report(self) -> Dict[str, float]:
         """Classification report as string."""
-        return {attr: getattr(self, attr) for attr in CLASSIFICATION_REPORT_FIELDS}
+        return {attr: getattr(self, attr) for attr in
+                CLASSIFICATION_REPORT_FIELDS}
 
 
 @dataclass
 class SourceDetectionEvaluation(ClassificationMetrics):
+    real_sources: List[NODE_TYPE]
+    detected_sources: List[NODE_TYPE]
+    # shortest path length from the detected invalid source to the closest
+    # real source
+    error_distances: Dict[NODE_TYPE, float]
+
+    @property
+    def avg_error_distance(self) -> float:
+        """Average error distance."""
+        return sum(self.error_distances.values()) / len(self.error_distances)
+
+
+@dataclass
+class SourceDetectionResult:
+    config: SourceDetectionConfig
     G: Graph
-    real_sources: List[int]
-    detected_sources: List[int]
-    error_distances: List[int]
+    IG: Graph
+    global_scores: Dict[NODE_TYPE, float]
+    scores_in_outbreaks: List[Dict[NODE_TYPE, float]]
+    detected_sources: List[NODE_TYPE]

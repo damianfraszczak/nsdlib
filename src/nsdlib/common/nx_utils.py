@@ -1,7 +1,7 @@
 import json
 import math
 import random
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 import networkx as nx
 from networkx import Graph
@@ -30,16 +30,6 @@ def exclude_nodes(G: Graph, nodes: List[any]) -> Graph:
     g_copy.remove_nodes_from(nodes)
     return g_copy
 
-
-def load_network_json(json_file_path):
-    """Load network from JSON file."""
-    with open(json_file_path, "r") as f:
-        data_loaded = json.load(f)
-    return nx.node_link_graph(data_loaded)
-
-
-def save_network_json(graph, json_file_path):
-    """Save network to JSON file."""
-    data = nx.node_link_data(graph)
-    with open(json_file_path, "w") as f:
-        json.dump(data, f, indent=4)
+def create_subgraphs_based_on_outbreaks(G: Graph, outbreaks: Dict[int, list]) -> List[Graph]:
+    """Create subgraphs based on outbreaks."""
+    return [G.subgraph(outbreak) for outbreak in outbreaks.values()]
