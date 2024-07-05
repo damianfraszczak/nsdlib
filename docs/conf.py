@@ -17,7 +17,6 @@ from nsdlib.version import __version__  # noqa
 # -- Project information -----------------------------------------------------
 now = datetime.datetime.now()
 
-
 project = "NSDLib"
 author = "Damian Frąszczak, Edyta Frąszczak"
 copyright = f"{now.year}, {author}"
@@ -44,5 +43,3 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
-
-
