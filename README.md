@@ -221,6 +221,42 @@ print(evaluation)
 
 ```
 
+For performing ensemble source detection, use 'EnsembleSourceDetector' class and configure it with 'EnsembleSourceDetectionConfig' object. This approach allows for seamless source detection and result evaluation.
+
+```python
+
+import networkx as nx
+
+from nsdlib.common.models import SourceDetectionConfig, \
+    EnsembleSourceDetectionConfig
+from nsdlib.source_detection import SourceDetector, EnsembleSourceDetector
+from nsdlib.taxonomies import NodeEvaluationAlgorithm, EnsembleVotingType
+
+G = nx.karate_club_graph()
+
+config_netsleuth = SourceDetectionConfig(
+    node_evaluation_algorithm=NodeEvaluationAlgorithm.NETSLEUTH,
+)
+
+config_degree = SourceDetectionConfig(
+    node_evaluation_algorithm=NodeEvaluationAlgorithm.CENTRALITY_DEGREE,
+)
+
+ensemble_config = EnsembleSourceDetectionConfig(
+    detection_configs=[config_netsleuth, config_degree],
+    voting_type=EnsembleVotingType.HARD,
+    classifier_weights=[0.5, 0.5],
+)
+
+source_detector = EnsembleSourceDetector(ensemble_config)
+
+result, evaluation = source_detector.detect_sources_and_evaluate(G=G,
+                                        IG=G, real_sources=[0,33])
+print(evaluation)
+
+
+```
+
 - by importing and using specific method, each method has appropriate prefix to understand what is the purpose of it:
 
 ```python
