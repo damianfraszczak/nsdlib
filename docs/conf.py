@@ -17,7 +17,6 @@ from nsdlib.version import __version__  # noqa
 # -- Project information -----------------------------------------------------
 now = datetime.datetime.now()
 
-
 project = "NSDLib"
 author = "Damian Frąszczak, Edyta Frąszczak"
 copyright = f"{now.year}, {author}"
