@@ -1,15 +1,12 @@
 from functools import lru_cache
 from typing import Dict, List, Set, Union
 
+from cdlib import NodeClustering
 from netcenlib.common import nx_cached
 from netcenlib.common.nx_cached import MAX_SIZE
 from networkx import Graph
 
-from nsdlib.algorithms import (
-    node_evaluation,
-    outbreaks_detection,
-    reconstruction,
-)
+from nsdlib.algorithms import evaluation, outbreaks, reconstruction
 from nsdlib.common.models import NODE_TYPE, SourceDetectionEvaluation
 from nsdlib.taxonomies import (
     NodeEvaluationAlgorithm,
@@ -18,13 +15,18 @@ from nsdlib.taxonomies import (
 )
 
 
+def node_clustering_into_communities(result: NodeClustering) -> Dict[NODE_TYPE, list]:
+    """Convert the node clustering result into a dictionary."""
+    return {index: community for index, community in enumerate(result.communities)}
+
+
 def identify_outbreaks(
     network: Graph, outbreaks_alg: OutbreaksDetectionAlgorithm, *args, **kwargs
-) -> Dict[int, list]:
+) -> Dict[NODE_TYPE, list]:
     """Identify outbreaks in a given network."""
     function_name = f"{outbreaks_alg.value.lower()}"
-    result = getattr(outbreaks_detection, function_name)(network, *args, **kwargs)
-    return {index: community for index, community in enumerate(result.communities)}
+    result = getattr(outbreaks, function_name)(network, *args, **kwargs)
+    return node_clustering_into_communities(result)
 
 
 def evaluate_nodes(
@@ -32,7 +34,7 @@ def evaluate_nodes(
 ):
     """Evaluate nodes in a given network."""
     function_name = f"{evaluation_alg.value.lower()}"
-    return getattr(node_evaluation, function_name)(network, *args, **kwargs)
+    return getattr(evaluation, function_name)(network, *args, **kwargs)
 
 
 def reconstruct_propagation(
