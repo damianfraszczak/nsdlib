@@ -9,5 +9,3 @@ of source detection methods, outbreak detection techniques, and propagation grap
 facilitating the development of new techniques to combat misinformation and improve propagation analysis.
 Each  year, new techniques are introduced through scientific papers, often with only pseudo-code descriptions, making it
 difficult for researchers to evaluate and compare them with existing methods. NSDlib tries to bridge this gap and enhance researchers to put their implementations here.
-
-##

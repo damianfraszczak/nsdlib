@@ -38,7 +38,7 @@ print(evaluation)
 
 
 ```
-### direct method calls
+### Direct method calls
 by importing and using specific method, each method has appropriate prefix to understand what is the purpose of it:
 
 ```python
@@ -75,7 +75,8 @@ print(evaluation)
 This method allows you to directly specify the process of source detection, making it easy to do any modifications to standardlogic.
 
 ### Enum usage
-- by using appropriate enum and method for computing desired method:
+by using appropriate enum and method for computing desired method:
+
 ```python
 
 import networkx as nx
