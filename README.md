@@ -31,6 +31,7 @@ All custom implementations are provided under `nsdlib/algorithms` package. Each 
 - [decay_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.decay_centrality.html)
 - [degree_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.degree_centrality.html)
 - [diffusion_degree_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.diffusion_degree_centrality.html)
+- [dynamic_age](https://nsdlib.readthedocs.io/en/latest/source/nsdlib.algorithms.evaluation.dynamic_age.html#nsdlib.algorithms.evaluation.dynamic_age.dynamic_age)
 - [eccentricity_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.eccentricity_centrality.html)
 - [eigenvector_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.eigenvector_centrality.html)
 - [entropy_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.entropy_centrality.html)
@@ -41,12 +42,14 @@ All custom implementations are provided under `nsdlib/algorithms` package. Each 
 - [harmonic_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.harmonic_centrality.html)
 - [heatmap_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.heatmap_centrality.html)
 - [hubbell_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.hubbell_centrality.html)
+- [jordan_center](https://nsdlib.readthedocs.io/en/latest/source/nsdlib.algorithms.evaluation.jordan_center.html)
 - [katz_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.katz_centrality.html)
 - [laplacian_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.laplacian_centrality.html)
 - [leverage_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.leverage_centrality.html)
 - [lin_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.lin_centrality.html)
 - [load_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.load_centrality.html)
 - [mnc_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.mnc_centrality.html)
+- [net_sleuth](https://nsdlib.readthedocs.io/en/latest/source/nsdlib.algorithms.evaluation.net_sleuth.html#nsdlib.algorithms.evaluation.net_sleuth.net_sleuth)
 - [pagerank_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.pagerank_centrality.html)
 - [pdi_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.pdi_centrality.html)
 - [percolation_centrality](https://netcenlib.readthedocs.io/en/latest/source/netcenlib.algorithms.percolation_centrality.html)
@@ -180,7 +183,7 @@ All custom implementations are provided under `nsdlib/algorithms` package. Each 
 - [walktrap](https://cdlib.readthedocs.io/en/latest/reference/generated/cdlib.algorithms.walktrap.html)
 
 ### Graph reconstruction algorithms
-- SbRP
+- [SbRP](https://nsdlib.readthedocs.io/en/latest/source/nsdlib.algorithms.reconstruction.sbrp.html#nsdlib.algorithms.reconstruction.sbrp.sbrp)
 
 ### Ensemble methods
 This package provides implementation for easily combining multiple source detection methods into one ensemble method. Use 'EnsembleSourceDetector' with config objects as arguments to create an ensemble method.
