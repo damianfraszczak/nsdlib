@@ -36,12 +36,15 @@ class SourceDetectionConfig:
     node_evaluation_algorithm: NodeEvaluationAlgorithm = (
         NodeEvaluationAlgorithm.CENTRALITY_DEGREE
     )
-    selection_algorithm: SelectionAlgorithm = SelectionAlgorithm()
+    selection_algorithm: Optional[SelectionAlgorithm] = None
     outbreaks_detection_algorithm: Optional[OutbreaksDetectionAlgorithm] = None
     propagation_reconstruction_algorithm: Optional[
         PropagationReconstructionAlgorithm
     ] = None
 
+    def __post_init__(self):
+        if not self.selection_algorithm:
+            self.selection_algorithm = SelectionAlgorithm()
 
 @dataclass
 class EnsembleSourceDetectionConfig:
