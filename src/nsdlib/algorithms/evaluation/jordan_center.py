@@ -13,7 +13,7 @@ def jordan_center(network: Graph) -> Dict[int, float]:
     ----------
     -  [1] L. Ying and K. Zhu,
         "On the Universality of Jordan Centers for Estimating Infection Sources
-         in Tree Networks" IEEE Transactions of Information Theory, 2017
+         in Tree Networks" IEEE Transactions of Information Theory, 2014
     - [2] L. Ying and K. Zhu,
         "Diffusion Source Localization in Large Networks"
         Synthesis Lectures on Communication Networks, 2018
