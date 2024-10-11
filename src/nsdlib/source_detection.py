@@ -82,8 +82,7 @@ class SourceDetector:
             ]
         return outbreaks
 
-    def _get_global_scores(self,
-                           outbreaks_evaluation: List[Dict[NODE_TYPE, float]]):
+    def _get_global_scores(self, outbreaks_evaluation: List[Dict[NODE_TYPE, float]]):
         global_scores = {}
         for outbreak_evaluation in outbreaks_evaluation:
             for node, evaluation in outbreak_evaluation.items():
@@ -103,16 +102,18 @@ class SourceDetector:
             )
         return scores
 
-    def _select_sources(self,
-                        IG: Graph,
-                        outbreaks_evaluation: List[Dict[NODE_TYPE, float]]):
+    def _select_sources(
+        self, IG: Graph, outbreaks_evaluation: List[Dict[NODE_TYPE, float]]
+    ):
         sources = []
         for outbreak_evaluation in outbreaks_evaluation:
             if self.config.selection_algorithm.selection_method:
                 max_score = max(outbreak_evaluation.values())
-                nodes_with_higher_score = [node for node, score in
-                                           outbreak_evaluation.items() if
-                                           score == max_score]
+                nodes_with_higher_score = [
+                    node
+                    for node, score in outbreak_evaluation.items()
+                    if score == max_score
+                ]
                 if len(nodes_with_higher_score) == 1:
                     sources.append(nodes_with_higher_score[0])
                 else:
@@ -124,15 +125,19 @@ class SourceDetector:
                     )
                     filtered_second_evaluation = {
                         node: selection_evaluation[node]
-                        for node in nodes_with_higher_score}
+                        for node in nodes_with_higher_score
+                    }
                     max_second_score = max(filtered_second_evaluation.values())
-                    sources.extend([node for node, score in
-                                    filtered_second_evaluation.items() if
-                                    score == max_second_score])
+                    sources.extend(
+                        [
+                            node
+                            for node, score in filtered_second_evaluation.items()
+                            if score == max_second_score
+                        ]
+                    )
 
             elif self.config.selection_algorithm.selection_threshold is None:
-                sources.append(
-                    max(outbreak_evaluation, key=outbreak_evaluation.get))
+                sources.append(max(outbreak_evaluation, key=outbreak_evaluation.get))
             else:
                 outbreaks_evaluation_normalized = normalize_dict_values(
                     outbreak_evaluation
@@ -141,10 +146,9 @@ class SourceDetector:
                 sources.extend(
                     [
                         node
-                        for node, evaluation in
-                        outbreaks_evaluation_normalized.items()
-                        if
-                        evaluation >= self.config.selection_algorithm.selection_threshold
+                        for node, evaluation in outbreaks_evaluation_normalized.items()
+                        if evaluation
+                        >= self.config.selection_algorithm.selection_threshold
                     ]
                 )
 
@@ -157,8 +161,7 @@ class EnsembleSourceDetector:
     def __init__(self, config: EnsembleSourceDetectionConfig):
         self.config = config
 
-    def detect_sources(self, IG: Graph, G: Graph) -> List[
-        SourceDetectionResult]:
+    def detect_sources(self, IG: Graph, G: Graph) -> List[SourceDetectionResult]:
         return [
             SourceDetector(config).detect_sources(IG, G)
             for config in self.config.detection_configs

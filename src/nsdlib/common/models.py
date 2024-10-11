@@ -3,7 +3,6 @@ from typing import Dict, List, Optional, Union
 
 from networkx import Graph
 
-from nsdlib.commons import normalize_dict_values
 from nsdlib.taxonomies import (
     EnsembleVotingType,
     NodeEvaluationAlgorithm,
@@ -23,16 +22,17 @@ class SelectionAlgorithm:
         if self.selection_threshold is not None and not (
             0 <= self.selection_threshold <= 1
         ):
-            raise ValueError(
-                "selection_threshold must be None or between 0 and 1.")
+            raise ValueError("selection_threshold must be None or between 0 and 1.")
         if self.selection_method and self.selection_threshold:
             raise ValueError(
                 "selection_method and selection_threshold cannot be used together."
             )
 
+
 @dataclass
 class SourceDetectionConfig:
     """Source detection configuration."""
+
     node_evaluation_algorithm: NodeEvaluationAlgorithm = (
         NodeEvaluationAlgorithm.CENTRALITY_DEGREE
     )
@@ -46,12 +46,12 @@ class SourceDetectionConfig:
         if not self.selection_algorithm:
             self.selection_algorithm = SelectionAlgorithm()
 
+
 @dataclass
 class EnsembleSourceDetectionConfig:
     """Ensemble source detection configuration."""
 
-    detection_configs: List[SourceDetectionConfig] = field(
-        default_factory=list)
+    detection_configs: List[SourceDetectionConfig] = field(default_factory=list)
     voting_type: EnsembleVotingType = EnsembleVotingType.HARD
     classifier_weights: List[float] = field(default_factory=list)
 
@@ -164,8 +164,7 @@ class ClassificationMetrics:
 
     def get_classification_report(self) -> Dict[str, float]:
         """Classification report as string."""
-        return {attr: getattr(self, attr) for attr in
-                CLASSIFICATION_REPORT_FIELDS}
+        return {attr: getattr(self, attr) for attr in CLASSIFICATION_REPORT_FIELDS}
 
 
 @dataclass
