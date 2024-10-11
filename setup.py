@@ -30,7 +30,7 @@ setup(
     version=find_version("src", "nsdlib", "version.py"),
     license="MIT",
     description="Network source detection library",
-    url="https://github.com/damianfraszczak/nclib",
+    url="https://github.com/damianfraszczak/nsdlib",
     author="Damian Frąszczak, Edyta Frąszczak",
     author_email="damian.fraszczak@wat.edu.pl",
     classifiers=[
@@ -41,7 +41,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    keywords="node_importance centrality_measures centrality complex-networks",
+    keywords="propagation-source-detection outbreaks-detection propagation-reconstruction complex-networks",
     install_requires=[
         "networkx>=3.0",
         "numpy",

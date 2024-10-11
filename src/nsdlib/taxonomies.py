@@ -20,6 +20,7 @@ class NodeEvaluationAlgorithm(Enum):
     CENTRALITY_DECAY = "decay_centrality"
     CENTRALITY_DEGREE = "degree_centrality"
     CENTRALITY_DIFFUSION_DEGREE = "diffusion_degree_centrality"
+    CENTRALITY_ECCENTRICITY = "eccentricity_centrality"
     CENTRALITY_EIGENVECTOR = "eigenvector_centrality"
     CENTRALITY_ENTROPY = "entropy_centrality"
     CENTRALITY_GEODESTIC_K_PATH = "geodestic_k_path_centrality"

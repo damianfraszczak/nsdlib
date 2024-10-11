@@ -14,24 +14,37 @@ NODE_TYPE = Union[int, str]
 
 
 @dataclass
-class SourceDetectionConfig:
-    """Source detection configuration."""
-
-    # for None, only one with the highest score will be selected
+class SelectionAlgorithm:
+    selection_method: Optional[NodeEvaluationAlgorithm] = None
     selection_threshold: Optional[float] = None
-    node_evaluation_algorithm: NodeEvaluationAlgorithm = (
-        NodeEvaluationAlgorithm.CENTRALITY_DEGREE
-    )
-    outbreaks_detection_algorithm: Optional[OutbreaksDetectionAlgorithm] = None
-    propagation_reconstruction_algorithm: Optional[
-        PropagationReconstructionAlgorithm
-    ] = None
 
     def __post_init__(self):
         if self.selection_threshold is not None and not (
             0 <= self.selection_threshold <= 1
         ):
             raise ValueError("selection_threshold must be None or between 0 and 1.")
+        if self.selection_method and self.selection_threshold:
+            raise ValueError(
+                "selection_method and selection_threshold cannot be used together."
+            )
+
+
+@dataclass
+class SourceDetectionConfig:
+    """Source detection configuration."""
+
+    node_evaluation_algorithm: NodeEvaluationAlgorithm = (
+        NodeEvaluationAlgorithm.CENTRALITY_DEGREE
+    )
+    selection_algorithm: Optional[SelectionAlgorithm] = None
+    outbreaks_detection_algorithm: Optional[OutbreaksDetectionAlgorithm] = None
+    propagation_reconstruction_algorithm: Optional[
+        PropagationReconstructionAlgorithm
+    ] = None
+
+    def __post_init__(self):
+        if not self.selection_algorithm:
+            self.selection_algorithm = SelectionAlgorithm()
 
 
 @dataclass
