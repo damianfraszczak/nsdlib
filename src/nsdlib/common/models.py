@@ -3,7 +3,6 @@ from typing import Dict, List, Optional, Union
 
 from networkx import Graph
 
-from nsdlib.commons import normalize_dict_values
 from nsdlib.taxonomies import (
     EnsembleVotingType,
     NodeEvaluationAlgorithm,
