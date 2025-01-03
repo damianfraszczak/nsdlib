@@ -4,7 +4,7 @@ NSDlib (Network source detection library) is a comprehensive library designed fo
 
 If you use NSDLib as support to your research consider citing:
 
-D. Frąszczak, E. Frąszczak. NSDLib: A comprehensive python library for network source detection and evaluation. SoftwareX. 2024. DOI:10.1016/j.softx.2024.101950.
+`D. Frąszczak, E. Frąszczak. NSDLib: A comprehensive python library for network source detection and evaluation. SoftwareX. 2024. DOI:10.1016/j.softx.2024.101950.`
 
 ## Overview
 
