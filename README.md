@@ -2,6 +2,10 @@
 
 NSDlib (Network source detection library) is a comprehensive library designed for detecting sources of propagation in networks. This library offers a variety of algorithms that help researchers and developers analyze and identify the origins of information (epidemic etc.) spread within networks.
 
+If you use NSDLib as support to your research consider citing:
+
+D. Frąszczak, E. Frąszczak. NSDLib: A comprehensive python library for network source detection and evaluation. SoftwareX. 2024. DOI:10.1016/j.softx.2024.101950.
+
 ## Overview
 
 NSDLib is a complex library designed for easy integration into existing projects. It aims to be a comprehensive repository
