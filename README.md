@@ -1,5 +1,17 @@
-# NSDlib
+<h1 align="center">
+    ⚔️ NSDlib (Network source detection library) ⚔️
+</h1>
 
+<p align="center">
+    <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/nsdlib">
+    <img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/nsdlib" href="https://pepy.tech/project/nsdlib">
+    <a href="https://repology.org/project/python:nsdlib/versions">
+        <img src="https://repology.org/badge/tiny-repos/python:nsdlib.svg" alt="Packaging status">
+    </a>
+    <img alt="Downloads" src="https://pepy.tech/badge/nsdlib">
+    <img alt="GitHub license" src="https://img.shields.io/github/license/damianfraszczak/nsdlib" href="https://github.com/damianfraszczak/nsdlib/blob/master/LICENSE">
+    <img alt="Documentation Status" src="https://readthedocs.org/projects/nsdlib/badge/?version=latest" href="https://nsdlib.readthedocs.io/en/latest/?badge=latest">
+</p>
 NSDlib (Network source detection library) is a comprehensive library designed for detecting sources of propagation in networks. This library offers a variety of algorithms that help researchers and developers analyze and identify the origins of information (epidemic etc.) spread within networks.
 
 If you use NSDLib as support to your research consider citing:
